@@ -1,0 +1,54 @@
+FOBJ=./ang_diam_mod.o ./bbn_init.o ./bbn_no_renorm_v2.o ./bbn_only_rk2_v2.o ./bbn_yes.o ./bbn_yes_driver_v2.o ./bbn_yes_evolve_v2.o ./bbn_yes_launch_v2.o ./bbn_yes_revert_v2.o ./bbn_yes_rkck_v2.o ./bbn_yes_save_out_v2.o ./bbn_yes_save_state_v2.o ./bbn_yes_stepper_v2.o ./bbn_yes_therm_v2.o ./bbnvar_v2.o ./bessel.o ./gauss.o ./intermod.o ./interp.o ./main.o ./main_init.o ./mainvar.o ./massvar.o ./msw.o ./nse.o ./nu_assign.o ./nucsolver.o ./opt_depth_mod.o ./ratedecay.o ./ratenp.o ./ratenp_corr.o ./ratenuc.o ./renorm.o ./sdratio.o ./sdratio_init.o ./sdratio_launch.o ./sdratio_length.o ./sdratiovar.o ./trans_dealloc.o ./trans_evolve.o ./trans_init.o ./trans_nuepma.o ./trans_nuer1.o ./trans_nuer2.o ./trans_nunu.o ./trans_nunubar.o ./transvar.o ./xe_history.o ./ye.o 
+
+./burst: $(FOBJ)
+	mpif90 -O0 -cpp -Dprllel   -o ./burst ./ang_diam_mod.o ./bbn_init.o ./bbn_no_renorm_v2.o ./bbn_only_rk2_v2.o ./bbn_yes.o ./bbn_yes_driver_v2.o ./bbn_yes_evolve_v2.o ./bbn_yes_launch_v2.o ./bbn_yes_revert_v2.o ./bbn_yes_rkck_v2.o ./bbn_yes_save_out_v2.o ./bbn_yes_save_state_v2.o ./bbn_yes_stepper_v2.o ./bbn_yes_therm_v2.o ./bbnvar_v2.o ./bessel.o ./gauss.o ./intermod.o ./interp.o ./main.o ./main_init.o ./mainvar.o ./massvar.o ./msw.o ./nse.o ./nu_assign.o ./nucsolver.o ./opt_depth_mod.o ./ratedecay.o ./ratenp.o ./ratenp_corr.o ./ratenuc.o ./renorm.o ./sdratio.o ./sdratio_init.o ./sdratio_launch.o ./sdratio_length.o ./sdratiovar.o ./trans_dealloc.o ./trans_evolve.o ./trans_init.o ./trans_nuepma.o ./trans_nuer1.o ./trans_nuer2.o ./trans_nunu.o ./trans_nunubar.o ./transvar.o ./xe_history.o ./ye.o 
+
+./ang_diam_mod.o ./ang_diam_mod.mod : ./ang_diam_mod.f90 ./sdratiovar.mod ./mainvar.mod 
+./bbn_init.o : ./bbn_init.f90 ./gauss.mod ./ratenp.mod ./bbnvar_v2.mod 
+./bbn_no_renorm_v2.o : ./bbn_no_renorm_v2.f90 ./mainvar.mod 
+./bbn_only_rk2_v2.o : ./bbn_only_rk2_v2.f90 ./nucsolver.mod ./bbnvar_v2.mod 
+./bbn_yes.o : ./bbn_yes.f90 ./ratenp.mod ./renorm.mod ./nse.mod ./bessel.mod ./msw.mod ./bbnvar_v2.mod 
+./bbn_yes_driver_v2.o : ./bbn_yes_driver_v2.f90 ./bbnvar_v2.mod 
+./bbn_yes_evolve_v2.o : ./bbn_yes_evolve_v2.f90 ./trans_nuepma.mod ./trans_nuer2.mod ./trans_nuer1.mod ./trans_nunubar.mod ./trans_nunu.mod ./transvar.mod ./bessel.mod ./nucsolver.mod ./ratenp.mod ./bbnvar_v2.mod 
+./bbn_yes_launch_v2.o : ./bbn_yes_launch_v2.f90 ./ratenp.mod ./renorm.mod ./nse.mod ./bessel.mod ./bbnvar_v2.mod 
+./bbn_yes_revert_v2.o : ./bbn_yes_revert_v2.f90 ./bbnvar_v2.mod 
+./bbn_yes_rkck_v2.o : ./bbn_yes_rkck_v2.f90 ./bbnvar_v2.mod 
+./bbn_yes_save_out_v2.o : ./bbn_yes_save_out_v2.f90 ./ye.mod ./nse.mod ./bbnvar_v2.mod 
+./bbn_yes_save_state_v2.o : ./bbn_yes_save_state_v2.f90 ./bbnvar_v2.mod 
+./bbn_yes_stepper_v2.o : ./bbn_yes_stepper_v2.f90 ./msw.mod ./bbnvar_v2.mod 
+./bbn_yes_therm_v2.o : ./bbn_yes_therm_v2.f90 ./renorm.mod ./bessel.mod ./bbnvar_v2.mod 
+./bbnvar_v2.o ./bbnvar_v2.mod : ./bbnvar_v2.f90 ./mainvar.mod 
+./bessel.o ./bessel.mod : ./bessel.f90 ./bbnvar_v2.mod 
+./gauss.o ./gauss.mod : ./gauss.f90 ./mainvar.mod 
+./intermod.o ./intermod.mod : ./intermod.f90 ./mainvar.mod ./sdratiovar.mod ./bbnvar_v2.mod 
+./interp.o ./interp.mod : ./interp.f90 ./mainvar.mod 
+./main.o : ./main.f90 ./nu_assign.mod ./sdratiovar.mod ./intermod.mod ./massvar.mod ./bbnvar_v2.mod ./mainvar.mod 
+./main_init.o : ./main_init.f90 
+./mainvar.o ./mainvar.mod : ./mainvar.f90 
+./massvar.o ./massvar.mod : ./massvar.f90 ./mainvar.mod 
+./msw.o ./msw.mod : ./msw.f90 ./mainvar.mod 
+./nse.o ./nse.mod : ./nse.f90 ./mainvar.mod 
+./nu_assign.o ./nu_assign.mod : ./nu_assign.f90 ./mainvar.mod 
+./nucsolver.o ./nucsolver.mod : ./nucsolver.f90 ./bbnvar_v2.mod 
+./opt_depth_mod.o ./opt_depth_mod.mod : ./opt_depth_mod.f90 ./xe_history.mod ./interp.mod ./sdratiovar.mod ./mainvar.mod 
+./ratedecay.o : ./ratedecay.f90 ./bbnvar_v2.mod 
+./ratenp.o ./ratenp.mod : ./ratenp.f90 ./renorm.mod ./ratenp_corr.mod ./transvar.mod ./gauss.mod ./mainvar.mod 
+./ratenp_corr.o ./ratenp_corr.mod : ./ratenp_corr.f90 ./mainvar.mod 
+./ratenuc.o : ./ratenuc.f90 ./bbnvar_v2.mod 
+./renorm.o ./renorm.mod : ./renorm.f90 ./mainvar.mod 
+./sdratio.o : ./sdratio.f90 ./xe_history.mod ./massvar.mod ./interp.mod ./sdratio_length.mod ./sdratiovar.mod 
+./sdratio_init.o : ./sdratio_init.f90 ./sdratio_length.mod ./sdratiovar.mod 
+./sdratio_launch.o : ./sdratio_launch.f90 ./xe_history.mod ./sdratio_length.mod ./sdratiovar.mod 
+./sdratio_length.o ./sdratio_length.mod : ./sdratio_length.f90 ./interp.mod ./ang_diam_mod.mod ./opt_depth_mod.mod ./xe_history.mod ./sdratiovar.mod 
+./sdratiovar.o ./sdratiovar.mod : ./sdratiovar.f90 ./mainvar.mod 
+./trans_dealloc.o : ./trans_dealloc.f90 ./transvar.mod 
+./trans_evolve.o : ./trans_evolve.f90 ./renorm.mod ./trans_nuepma.mod ./trans_nuer2.mod ./trans_nuer1.mod ./trans_nunubar.mod ./trans_nunu.mod ./transvar.mod 
+./trans_init.o : ./trans_init.f90 ./trans_nuepma.mod ./trans_nuer2.mod ./trans_nuer1.mod ./trans_nunubar.mod ./trans_nunu.mod ./gauss.mod ./transvar.mod 
+./trans_nuepma.o ./trans_nuepma.mod : ./trans_nuepma.f90 ./gauss.mod ./interp.mod ./transvar.mod ./mainvar.mod 
+./trans_nuer1.o ./trans_nuer1.mod : ./trans_nuer1.f90 ./gauss.mod ./interp.mod ./transvar.mod ./mainvar.mod 
+./trans_nuer2.o ./trans_nuer2.mod : ./trans_nuer2.f90 ./gauss.mod ./interp.mod ./transvar.mod ./mainvar.mod 
+./trans_nunu.o ./trans_nunu.mod : ./trans_nunu.f90 ./gauss.mod ./interp.mod ./transvar.mod ./mainvar.mod 
+./trans_nunubar.o ./trans_nunubar.mod : ./trans_nunubar.f90 ./gauss.mod ./interp.mod ./transvar.mod ./mainvar.mod 
+./transvar.o ./transvar.mod : ./transvar.f90 ./interp.mod ./mainvar.mod 
+./xe_history.o ./xe_history.mod : ./xe_history.f90 ./sdratiovar.mod 
+./ye.o ./ye.mod : ./ye.f90 ./mainvar.mod 
