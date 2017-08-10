@@ -1,12 +1,12 @@
 module jamil
+    
+    implicit none
 
     contains
 
-    real function cvc(x)
+    REAL(KIND=8) function cvc(x)
 
-        implicit none
-
-        real :: x
+        REAL(KIND=8) :: x
 
         cvc = -0.000128145 + (8.66854 * (10.**(-6)) * x) + &
         (8.37184 * (10.**(-6)) * x**2) + (5.32329 * (10.**(-8)) * x**3) + &

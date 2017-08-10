@@ -17,7 +17,7 @@
        use gauss
        use transvar
        use ratenp_corr
- !      use jamil
+       !use jamil
 
 
        implicit none
@@ -431,6 +431,15 @@
        real(dl) zerorcorr !zero temperature radiative correction
 
 
+!-----------------------------------------
+          real(dl) cvc
+
+          cvc = -0.000128145 + (8.66854 * (10.**(-6)) * x) + &
+          (8.37184 * (10.**(-6)) * x**2) + (5.32329 * (10.**(-8)) * x**3) + &
+          (1.62786 * (10.**(-10)) * x**4) - (2.43836 * (10.**(-13)) * x**5) + &
+          (1.43109 * (10.**(-16)) * x**6)
+!-----------------------------------------
+
 !------procedure.
        
        ee = x + mnpeps
@@ -440,8 +449,8 @@
                                     , x/meps, ee/meps)
 
        urcafc = coulcorr*zerorcorr*x**2*ee*sqrt(ee**2-meps**2) &
-                    *nuoccprob*(1._dl - 1._dl/(exp(ee*tcmpl - phie) + 1._dl))
-!                    *cvc(x)
+                    *nuoccprob*(1._dl - 1._dl/(exp(ee*tcmpl - phie) + 1._dl)) &
+                    *cvc
 
        
 
@@ -486,6 +495,16 @@
        real(dl) zerorcorr !zero temperature radiative correction
 
 
+!-----------------------------------------
+          real(dl) cvc
+
+          cvc = -0.000128145 + (8.66854 * (10.**(-6)) * x) + &
+          (8.37184 * (10.**(-6)) * x**2) + (5.32329 * (10.**(-8)) * x**3) + &
+          (1.62786 * (10.**(-10)) * x**4) - (2.43836 * (10.**(-13)) * x**5) + &
+          (1.43109 * (10.**(-16)) * x**6)
+!-----------------------------------------
+
+
 !------procedure.
        
        ee = x + mnpeps
@@ -495,8 +514,8 @@
                                     , x/meps, ee/meps)
 
        urcarc = coulcorr*zerorcorr*x**2*ee*sqrt(ee**2-meps**2) &
-                      *(1._dl - nuoccprob)/(exp(ee*tcmpl - phie) + 1._dl)
-!                      *cvc(x)
+                      *(1._dl - nuoccprob)/(exp(ee*tcmpl - phie) + 1._dl) &
+                      *cvc
 
 
        return
@@ -538,6 +557,16 @@
        real(dl) zerorcorr !zero temperature radiative correction
 
 
+!-----------------------------------------
+          real(dl) cvc
+
+          cvc = -0.000128145 + (8.66854 * (10.**(-6)) * x) + &
+          (8.37184 * (10.**(-6)) * x**2) + (5.32329 * (10.**(-8)) * x**3) + &
+          (1.62786 * (10.**(-10)) * x**4) - (2.43836 * (10.**(-13)) * x**5) + &
+          (1.43109 * (10.**(-16)) * x**6)
+!-----------------------------------------
+
+
 !------procedure.
 
        ee = x - mnpeps
@@ -545,8 +574,8 @@
                                     , x/meps, ee/meps)
 
        urcafn = zerorcorr*x**2*ee*sqrt(ee**2-meps**2) &
-                *(1._dl - nuoccprob)/(exp(ee*tcmpl + phie) + 1._dl)
- !               *cvc(x)
+                *(1._dl - nuoccprob)/(exp(ee*tcmpl + phie) + 1._dl) &
+                *cvc
 
 
        return
@@ -588,6 +617,16 @@
        real(dl) zerorcorr !zero temperature radiative correction
 
 
+!-----------------------------------------
+          real(dl) cvc
+
+          cvc = -0.000128145 + (8.66854 * (10.**(-6)) * x) + &
+          (8.37184 * (10.**(-6)) * x**2) + (5.32329 * (10.**(-8)) * x**3) + &
+          (1.62786 * (10.**(-10)) * x**4) - (2.43836 * (10.**(-13)) * x**5) + &
+          (1.43109 * (10.**(-16)) * x**6)
+!-----------------------------------------
+
+
 !------procedure.
 
        ee = x - mnpeps
@@ -596,8 +635,8 @@
                                     , x/meps, ee/meps)
 
        urcarn = zerorcorr*x**2*ee*sqrt(ee**2-meps**2) &
-                      *nuoccprob*(1._dl - 1._dl/(exp(ee*tcmpl + phie) + 1._dl))
-!                      *cvc(x)
+                      *nuoccprob*(1._dl - 1._dl/(exp(ee*tcmpl + phie) + 1._dl)) &
+                      *cvc
 
 
        return
@@ -640,6 +679,16 @@
        real(dl) zerorcorr !zero temperature radiative correction
 
 
+!-----------------------------------------
+          real(dl) cvc
+
+          cvc = -0.000128145 + (8.66854 * (10.**(-6)) * x) + &
+          (8.37184 * (10.**(-6)) * x**2) + (5.32329 * (10.**(-8)) * x**3) + &
+          (1.62786 * (10.**(-10)) * x**4) - (2.43836 * (10.**(-13)) * x**5) + &
+          (1.43109 * (10.**(-16)) * x**6)
+!-----------------------------------------
+
+
 !------procedure.
        
        ee = mnpeps - x
@@ -649,8 +698,8 @@
                                     , x/meps, ee/meps)
 
        ndecay = coulcorr*zerorcorr*x**2*ee*sqrt(ee**2-meps**2) &
-                   *(1._dl - nuoccprob)*(1._dl - 1._dl/(exp(ee*tcmpl - phie) + 1._dl))
-!                   *cvc(x)
+                   *(1._dl - nuoccprob)*(1._dl - 1._dl/(exp(ee*tcmpl - phie) + 1._dl)) &
+                   *cvc
 
 
        return
@@ -693,6 +742,16 @@
        real(dl) zerorcorr !zero temperature radiative correction
 
 
+!-----------------------------------------
+          real(dl) cvc
+
+          cvc = -0.000128145 + (8.66854 * (10.**(-6)) * x) + &
+          (8.37184 * (10.**(-6)) * x**2) + (5.32329 * (10.**(-8)) * x**3) + &
+          (1.62786 * (10.**(-10)) * x**4) - (2.43836 * (10.**(-13)) * x**5) + &
+          (1.43109 * (10.**(-16)) * x**6)
+!-----------------------------------------
+
+
 !------procedure.
        
        ee = mnpeps - x
@@ -702,8 +761,8 @@
                                     , x/meps, ee/meps)
 
        indecay = coulcorr*zerorcorr*x**2*ee*sqrt(ee**2-meps**2) &
-                   *nuoccprob/(exp(ee*tcmpl - phie) + 1._dl)
-!                   *cvc(x)
+                   *nuoccprob/(exp(ee*tcmpl - phie) + 1._dl) &
+                   *cvc
 
 
        return
